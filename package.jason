@@ -1,0 +1,8 @@
+{
+"name": "mu7009-home-launcher",
+"version": "1.0.0",
+"description": "Google-TV-inspirierter Launcher für Samsung MU7009",
+"main": "index.html",
+"type": "module",
+"license": "MIT"
+}
