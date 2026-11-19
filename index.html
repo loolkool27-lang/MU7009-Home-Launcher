@@ -11,7 +11,22 @@ main{position:relative;z-index:1;padding:5vh 6vw}.top{display:flex;justify-conte
 @media(max-width:650px){.apps{grid-template-columns:repeat(2,1fr)}.app{min-height:100px}h1{margin-top:7vh}.subtitle{margin-bottom:3vh}}
 </style></head><body><div class="scene"><div class="mountain back"></div><div class="mountain"></div></div><div class="shade"></div><main><div class="top"><div class="brand">◆ MU7009 Home</div><div class="clock" id="clock">--:--</div></div><h1>Hallo!</h1><p class="subtitle">Deine Lieblings-Apps auf einen Blick</p><div class="apps"><button class="app youtube" data-app="YouTube"><b>▶</b> YouTube</button><button class="app netflix" data-app="Netflix">NETFLIX</button><button class="app prime" data-app="Prime Video">prime video</button><button class="app disney" data-app="Disney+">Disney+</button><button class="app dazn" data-app="DAZN">DAZN</button></div><p class="notice" id="notice" aria-live="polite">Mit den Pfeiltasten navigieren und OK drücken.</p></main><div class="foot">Design-Prototyp · Samsung-App-Start noch nicht integriert</div><script>
 (function(){var buttons=[].slice.call(document.querySelectorAll('.app'));var notice=document.getElementById('notice');function tick(){var d=new Date();document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}tick();setInterval(tick,15000);buttons.forEach(function(b,i){b.addEventListener('click',function(){notice.textContent=b.getAttribute('data-app')+': Samsung-App-Start muss noch eingerichtet werden.'});b.addEventListener('keydown',function(e){var n=i;if(e.key==='ArrowRight')n=(i+1)%4;if(e.key==='ArrowLeft')n=(i+3)%4;if(e.key==='ArrowDown')n=(i+2)%4;if(e.key==='ArrowUp')n=(i+2)%4;if(n!==i){e.preventDefault();buttons[n].focus()}})});buttons[0].focus()})();
-document.querySelector('.app.dazn').addEventListener('click', function() {
-window.location.href = 'https://www.dazn.com/';
+
+const appLinks = {
+  "YouTube": "https://www.youtube.com/",
+  "Netflix": "https://www.netflix.com/",
+  "Prime Video": "https://www.primevideo.com/",
+  "Disney+": "https://www.disneyplus.com/",
+  "DAZN": "https://www.dazn.com/"
+};
+
+document.querySelectorAll('.app').forEach(function(button) {
+  button.addEventListener('click', function() {
+    const appName = button.getAttribute('data-app');
+    if (appLinks[appName]) {
+      window.location.href = appLinks[appName];
+    }
+  });
 });
+
 </script></body></html>
